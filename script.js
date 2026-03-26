@@ -48,6 +48,12 @@ typeEffect();
 
 const scrollTopBtn = document.getElementById("scrollTopBtn");
 
+window.addEventListener("load", () => {
+  document.body.classList.add("loaded");
+  revealSections();
+  setActiveNavLink();
+});
+
 window.addEventListener("scroll", () => {
   if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
     scrollTopBtn.style.display = "block";
@@ -80,8 +86,6 @@ function revealSections() {
   });
 }
 
-revealSections();
-
 function setActiveNavLink() {
   const sections = document.querySelectorAll("section");
   const navLinksList = document.querySelectorAll(".nav-link");
@@ -108,22 +112,30 @@ function setActiveNavLink() {
 const contactForm = document.getElementById("contactForm");
 const formMessage = document.getElementById("formMessage");
 
-contactForm.addEventListener("submit", function (e) {
+contactForm.addEventListener("submit", async function (e) {
   e.preventDefault();
 
-  const name = document.getElementById("name").value.trim();
-  const email = document.getElementById("email").value.trim();
-  const subject = document.getElementById("subject").value.trim();
-  const message = document.getElementById("message").value.trim();
+  const formData = new FormData(contactForm);
 
-  if (name === "" || email === "" || subject === "" || message === "") {
-    formMessage.textContent = "Please fill in all fields.";
+  try {
+    const response = await fetch(contactForm.action, {
+      method: "POST",
+      body: formData,
+      headers: {
+        Accept: "application/json"
+      }
+    });
+
+    if (response.ok) {
+      formMessage.textContent = "Message sent successfully!";
+      formMessage.style.color = "#38bdf8";
+      contactForm.reset();
+    } else {
+      formMessage.textContent = "Something went wrong. Please try again.";
+      formMessage.style.color = "#f87171";
+    }
+  } catch (error) {
+    formMessage.textContent = "Network error. Please try again.";
     formMessage.style.color = "#f87171";
-    return;
   }
-
-  formMessage.textContent = "Message sent successfully! (Demo only)";
-  formMessage.style.color = "#38bdf8";
-
-  contactForm.reset();
 });
