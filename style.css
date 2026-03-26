@@ -362,6 +362,21 @@ body.loaded #loader {
   gap: 24px;
 }
 
+.project-card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.project-card-link .project-card {
+  height: 100%;
+  cursor: pointer;
+}
+
+.project-card-link:hover .project-card {
+  transform: translateY(-10px);
+}
+
 .project-card {
   background: #111827;
   padding: 24px;
