@@ -27,8 +27,6 @@ I enjoy learning from scratch and building practical projects.
 - CSS3
 - JavaScript
 - Python
-- Flask / Django
-- SQL (MySQL, SQL Server)
 - Git & GitHub
 
 ---
