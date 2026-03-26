@@ -4,7 +4,7 @@ Welcome to my personal portfolio website 🚀
 This portfolio showcases my skills, projects, and certifications.
 
 🔗 **Live Website:**  
-https://SantoshKumarNeyyala.github.io/portfolio/
+https://SantoshKumarNeyyala.github.io/Portfolio/
 
 ---
 
